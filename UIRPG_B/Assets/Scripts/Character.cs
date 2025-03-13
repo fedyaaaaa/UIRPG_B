@@ -13,7 +13,7 @@ public class Character : MonoBehaviour
       get { return weapon; }
    }
 
-   public int Attack()
+   public virtual int Attack()
    {
       return weapon.GetDamage();
    }
