@@ -8,6 +8,11 @@ public class Character : MonoBehaviour
    public int health;
    [SerializeField] private Weapon weapon;
 
+   public Weapon Weapon
+   {
+      get { return weapon; }
+   }
+
    public int Attack()
    {
       return weapon.GetDamage();

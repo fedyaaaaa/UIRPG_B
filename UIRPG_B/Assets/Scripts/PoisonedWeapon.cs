@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
-public class PoisonedWeapon : MonoBehaviour
+public class PoisonedWeapon : Weapon
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private int poisonStrength = 3;
+
+    public override void ApplyEffect(Character target)
     {
-        
+        Debug.Log(target.name + "poisoned for " + poisonStrength);
+        target.GetHit(poisonStrength);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

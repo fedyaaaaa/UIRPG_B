@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BasicWeapon : Weapon
 {
-   public override void ApplyEffect()
+   public override void ApplyEffect(Character target)
    {
       Debug.Log("no additional effect");
    }

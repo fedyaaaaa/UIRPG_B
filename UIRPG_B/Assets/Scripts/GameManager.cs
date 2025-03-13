@@ -12,8 +12,10 @@ public class GameManager : MonoBehaviour
     {
         int damage = player.Attack();
         enemy.GetHit(damage);
+        player.Weapon.ApplyEffect(enemy);
         int enemyDamage = enemy.Attack();
         player.GetHit(enemyDamage);
+        enemy.Weapon.ApplyEffect(player);
     }
 
     
