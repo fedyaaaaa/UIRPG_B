@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
       return weapon.GetDamage();
    }
 
-   // In Character class
+   
    public virtual void GetHit(int damage)
    {
       Debug.Log(name + " starting health: " + health);

@@ -6,15 +6,16 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public Player player;
-    public List<Enemy> enemyPrefabs;  // List to hold different enemy prefabs
+    public List<Enemy> enemyPrefabs;  
     [SerializeField] private TMP_Text playerName, playerHealth, enemyName, enemyStats;
+    [SerializeField] private GameOverManager gameOverManager; // Reference to GameOverManager
 
     private Enemy currentEnemy;
 
     void Start()
     {
         playerName.text = player.CharName;
-        SpawnNewEnemy();  // Spawn the first enemy when the game starts
+        SpawnNewEnemy();
     }
 
     private void UpdateHealth()
@@ -25,26 +26,27 @@ public class GameManager : MonoBehaviour
 
     public void DoRound()
     {
-        // Player attacks first
+        if (player.health <= 0) return; // Stop if the player is already dead
+
         int damage = player.Attack();
         currentEnemy.GetHit(damage);
         player.Weapon.ApplyEffect(currentEnemy);
 
-        // Enemy counterattacks
         int enemyDamage = currentEnemy.Attack();
         player.GetHit(enemyDamage);
         currentEnemy.Weapon.ApplyEffect(player);
         UpdateHealth();
+
+        if (player.health <= 0)
+        {
+            gameOverManager.TriggerGameOver(); // Notify GameOverManager
+        }
     }
 
-    // Method to handle enemy death and respawn
     public void OnEnemyDeath()
     {
-        // Destroy the current enemy before spawning a new one
         Destroy(currentEnemy.gameObject);
-
-        // Spawn a new enemy
-        SpawnNewEnemy();  // Get a new enemy reference
+        SpawnNewEnemy();
     }
 
     // Method to spawn a new enemy (randomly selecting one from the list)
