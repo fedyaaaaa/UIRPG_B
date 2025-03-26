@@ -9,7 +9,8 @@ Changes
 2. Player & Enemy Combat System
 -Fixed damage application so player and enemy both attack correctly per round.
 -Ensured the enemy name updates in the UI when a new one spawns.
-3. Game Over System
+-Added the possibility of toggling on and off the shield, 10% chance of it breaking 
+4. Game Over System
 -Created a GameOverManager to handle the end of the game when the player's health reaches 0.
 -Displayed "Game Over" UI when the player dies.
 -Prevented further attacks after the game ends.
